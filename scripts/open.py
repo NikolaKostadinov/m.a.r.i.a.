@@ -1,5 +1,8 @@
 import argparse
+from operator import contains
 import os
+
+from matplotlib.pyplot import bar_label
 
 parser = argparse.ArgumentParser(description='Open file')
 parser.add_argument(
@@ -13,5 +16,12 @@ file = args.file
 
 homeDir = os.path.expanduser('~')
 for root, dirs, files in os.walk(homeDir):
-        if file in files:
-            os.startfile(os.path.join(root, file))
+    
+    for fullFileName in files:
+        
+        fileName = fullFileName.split('.')[0]
+        
+        if file == fileName:
+            filePath = os.path.join(root, fullFileName)
+            os.startfile(filePath)
+            break

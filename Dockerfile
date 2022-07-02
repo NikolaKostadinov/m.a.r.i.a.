@@ -1,6 +1,8 @@
-FROM python:3.10.4
+FROM python:3.10
 
 WORKDIR /app
+
+RUN pip install json argparse subprocess
 
 COPY . .
 
